@@ -13,6 +13,18 @@ FROM [Order] O
     ON O.ShipVia = S.Id
     WHERE O.OrderDate < '2012-08-09';
 
--- [ ] Display the name and quantity of the products ordered in order with Id 10251. Sort by ProductName. Shows 3 records.
+-- [*] Display the name and quantity of the products ordered in order with Id 10251. Sort by ProductName. Shows 3 records.
+SELECT P.ProductName
+FROM Product P
+    JOIN OrderDetail O
+    ON P.Id = O.ProductId
+    WHERE O.OrderId = 10251
+    ORDER BY ProductName;
 
--- [ ] Display the OrderID, Customer's Company Name and the employee's LastName for every order. All columns should be labeled clearly. Displays 16,789 records.
+-- [*] Display the OrderID, Customer's Company Name and the employee's LastName for every order. All columns should be labeled clearly. Displays 16,789 records.
+SELECT O.id, C.CompanyName, E.LastName
+FROM [Order] O
+    JOIN Customer C
+        ON O.CustomerId = C.Id
+    JOIN Employee E
+        ON O.EmployeeId = E.Id;
